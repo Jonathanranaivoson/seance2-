@@ -90,7 +90,7 @@
         field.classList.remove('is-error');
         msg.textContent = 'Connexion réussie.';
       } else {
-        restart(field, 'is-error');   // Question 5 : voir l'énoncé
+        field.classList.add('is-error'); // Question 5 : voir l'énoncé
         msg.textContent = 'Mot de passe incorrect.';
       }
     });

@@ -50,7 +50,7 @@ h2 { color: var(--navy); font-size: 1.3rem; }
   border-top-color: var(--navy);   /* un seul côté coloré : on verra la rotation */
 
   /* TODO 1.2 : appliquer l'animation "tourner" (1s, linear, infinite) */
-  animation: tourner 1s linear infinite;
+  animation: tourner 1s linear infinite; /* linear car le mouvement est vu en continue au lieu d'un acceleration/deceleration */
 }
 
 /* TODO 1.1 : écrire @keyframes tourner (de 0deg à 360deg) */
@@ -82,11 +82,14 @@ h2 { color: var(--navy); font-size: 1.3rem; }
    40%           : 10px plus haut, opacité 1 */
 
    @keyframes rebondir {
-    0%, 80%, 100% { transform: translateY(0); opacity: 0.4; }
-    40% { transform: translateY(-10px); opacity: 1; }
+      0%, 80%, 100% { transform: translateY(0); opacity: 0.4; }
+      40% { transform: translateY(-10px); opacity: 1; }
    }
 
 /* TODO 1.6 : décaler le départ du 2e et du 3e point */
+   .dots span:nth-child(2) {animation-delay: 0.15s;}
+   .dots span:nth-child(3) {animation-delay: 0.3s;}
+   
 
 /* =========================================================
    NIVEAU 2 — APPARITION
@@ -100,10 +103,21 @@ h2 { color: var(--navy); font-size: 1.3rem; }
    Seulement un "from" : opacité 0 et 20px plus bas.
    Pas de "to" : l'élément revient à son état normal. */
 
+   @keyframes apparaitre {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+   }
+
 /* TODO 2.2 : quand la grille a la classe .is-playing,
    chaque .reveal joue "apparaitre" (0.5s, ease-out) */
+   .is-playing .reveal {
+      animation: apparaitre 0.5s ease-out; /* ease-out pour que le mouvement se termine doucement */
+      animation-delay: calc(var(--i) * 100ms);
+      animation-fill-mode: backwards;
+   }
 
 /* TODO 2.3 : décaler chaque carte de 100ms × son rang (--i) avec calc() */
+
 
 /* TODO 2.4 : régler animation-fill-mode (voir l'énoncé) */
 
@@ -118,13 +132,25 @@ h2 { color: var(--navy); font-size: 1.3rem; }
 .msg { margin: 0; min-height: 1.5em; font-weight: 600; }
 .hint { margin: 0; font-size: .9rem; color: var(--muted); }
 
+
+
 /* TODO 3.1 : écrire @keyframes secouer
    0%, 100% : position normale
    20%, 60% : 8px à gauche
    40%, 80% : 8px à droite */
 
+   @keyframes secouer {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-8px); }
+      40%, 80% { transform: translateX(8px); }
+   }
+
 /* TODO 3.2 : quand .field a la classe .is-error,
    l'input devient rouge et joue "secouer" (0.4s, ease-in-out) */
+   .field.is-error input {
+      border-color: var(--red);
+      animation: secouer 0.4s ease-in-out;
+   }
 
 /* =========================================================
    BONUS — MACHINE À ÉCRIRE
@@ -137,8 +163,19 @@ h2 { color: var(--navy); font-size: 1.3rem; }
   overflow: hidden;
   /* TODO B.1 : largeur de départ 0, et un curseur (border-right) */
   /* TODO B.2 : deux animations : "taper" et "clignoter" */
-  width: max-content;   /* à supprimer quand vous commencez le bonus */
+  width: 0;   /* à supprimer quand vous commencez le bonus */
+  border-right: 3px solid var(--navy);  
+  animation: taper 3s steps(24) forwards, clignoter 1s step-end infinite;
 }
 
+
 /* TODO B.3 : @keyframes taper (largeur jusqu'à 24ch) */
+   @keyframes taper {
+      from { width: 0; }
+      to { width: 24ch; } /* on utilise 24ch pour calculer le nombre de caractères a afficher*/
+   }
 /* TODO B.4 : @keyframes clignoter (le curseur disparaît à 50 %) */
+   @keyframes clignoter {
+      0%, 100% { border-color: var(--navy); }
+      50% { border-color: transparent; }
+   }

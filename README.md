@@ -77,9 +77,9 @@ Avec `:nth-child()`, donnez un `animation-delay` de `0.15s` au 2e point et de `0
 > **Question 3.** Pourquoi le décalage donne-t-il l'impression d'une « vague » ?
 
 ✅ **Checkpoint niveau 1**
-- [ ] Le spinner tourne régulièrement, **au centre** de sa boîte
-- [ ] Les trois points rebondissent l'un après l'autre
-- [ ] Questions 1 à 3 répondues (en commentaire dans `style.css`)
+- [x] Le spinner tourne régulièrement, **au centre** de sa boîte
+- [x] Les trois points rebondissent l'un après l'autre
+- [x] Questions 1 à 3 répondues (en commentaire dans `style.css`)
 
 ---
 
@@ -98,6 +98,7 @@ Au chargement, les quatre cartes doivent apparaître l'une après l'autre, en fo
 Écrivez une règle `.is-playing .reveal` qui applique `apparaitre` : 0.5 s, `ease-out`.
 
 > **Question 4.** Pourquoi `ease-out` et pas `ease-in` pour un élément qui **arrive** ?
+ 
 
 Cliquez sur « Rejouer l'apparition » : les cartes apparaissent toutes en même temps.
 
@@ -120,9 +121,9 @@ Rejouez l'apparition et regardez **la dernière carte** pendant son délai.
 > **Question 5.** Expliquez le rôle de `backwards`. Quelle valeur choisissez-vous, et pourquoi ?
 
 ✅ **Checkpoint niveau 2**
-- [ ] Les cartes apparaissent l'une après l'autre, en fondu
-- [ ] Aucune carte ne « clignote » avant son apparition
-- [ ] Questions 4 et 5 répondues
+- [x] Les cartes apparaissent l'une après l'autre, en fondu
+- [x] Aucune carte ne « clignote » avant son apparition
+- [x] Questions 4 et 5 répondues
 
 ---
 
@@ -166,8 +167,8 @@ Testez deux mauvais mots de passe de suite.
 Remettez la ligne d'origine.
 
 ✅ **Checkpoint niveau 3**
-- [ ] Le champ devient rouge et secoue à **chaque** erreur
-- [ ] Rien ne secoue quand le mot de passe est correct (`itu2026`)
+- [x] Le champ devient rouge et secoue à **chaque** erreur
+- [x] Rien ne secoue quand le mot de passe est correct (`itu2026`)
 - [ ] Question 6 répondue
 
 ---
