@@ -74,11 +74,17 @@ h2 { color: var(--navy); font-size: 1.3rem; }
   border-radius: 50%;
   background: var(--navy);
   /* TODO 1.5 : appliquer l'animation "rebondir" (0.9s, ease-in-out, infinite) */
+  animation: rebondir 0.9s ease-in-out infinite;
 }
 
 /* TODO 1.4 : écrire @keyframes rebondir
    0%, 80%, 100% : en bas, opacité 0.4
    40%           : 10px plus haut, opacité 1 */
+
+   @keyframes rebondir {
+    0%, 80%, 100% { transform: translateY(0); opacity: 0.4; }
+    40% { transform: translateY(-10px); opacity: 1; }
+   }
 
 /* TODO 1.6 : décaler le départ du 2e et du 3e point */
 
