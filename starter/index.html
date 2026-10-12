@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TP2 — Des animations qui informent</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="page-header">
+    <h1>Des animations qui informent</h1>
+    <p>Animation Web — Séance 2 : @keyframes et courbes de timing</p>
+  </header>
+
+  <main>
+    <!-- ============ NIVEAU 1 ============ -->
+    <section id="loaders">
+      <h2>Niveau 1 — Loaders</h2>
+      <div class="loader-row">
+        <div class="loader-box">
+          <div class="spinner" role="status" aria-label="Chargement"></div>
+          <p>Spinner</p>
+        </div>
+        <div class="loader-box">
+          <div class="dots" role="status" aria-label="Chargement">
+            <span></span><span></span><span></span>
+          </div>
+          <p>Trois points</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ NIVEAU 2 ============ -->
+    <section id="apparition">
+      <h2>Niveau 2 — Apparition</h2>
+      <button class="btn" id="replay" type="button">Rejouer l'apparition</button>
+      <div class="grid" id="grid">
+        <!-- --i : le rang de chaque carte, utilisé pour décaler le départ -->
+        <article class="reveal" style="--i: 0"><h3>Emploi du temps</h3><p>Vos cours de la semaine.</p></article>
+        <article class="reveal" style="--i: 1"><h3>Notes</h3><p>Résultats du semestre.</p></article>
+        <article class="reveal" style="--i: 2"><h3>Absences</h3><p>Justificatifs à fournir.</p></article>
+        <article class="reveal" style="--i: 3"><h3>Projets</h3><p>Dépôts et échéances.</p></article>
+      </div>
+    </section>
+
+    <!-- ============ NIVEAU 3 ============ -->
+    <section id="erreur">
+      <h2>Niveau 3 — Erreur de saisie</h2>
+      <form class="login" id="login" novalidate>
+        <div class="field" id="field">
+          <label for="pwd">Mot de passe</label>
+          <input id="pwd" type="password" autocomplete="off">
+        </div>
+        <button class="btn" type="submit">Se connecter</button>
+        <p class="msg" id="msg" aria-live="polite"></p>
+        <p class="hint">Indice pour le test : le bon mot de passe est <code>itu2026</code>.</p>
+      </form>
+    </section>
+
+    <!-- ============ BONUS ============ -->
+    <section id="bonus">
+      <h2>Bonus — Machine à écrire</h2>
+      <p class="typewriter">Bienvenue à ITUniversity</p>
+    </section>
+  </main>
+
+  <!-- =========================================================
+       JavaScript FOURNI : ne pas modifier.
+       Nous apprendrons à écrire ce code en séance 3.
+       ========================================================= -->
+  <script>
+    // Relance une animation CSS en retirant puis remettant une classe
+    function restart(el, cls) {
+      el.classList.remove(cls);
+      void el.offsetWidth;   // force le navigateur à "oublier" l'animation
+      el.classList.add(cls);
+    }
+
+    // Niveau 2 : démarrer l'apparition au chargement, et au clic
+    const grid = document.getElementById('grid');
+    grid.classList.add('is-playing');
+    document.getElementById('replay').addEventListener('click', () => restart(grid, 'is-playing'));
+
+    // Niveau 3 : vérifier le mot de passe
+    const field = document.getElementById('field');
+    const msg = document.getElementById('msg');
+    document.getElementById('login').addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (document.getElementById('pwd').value === 'itu2026') {
+        field.classList.remove('is-error');
+        msg.textContent = 'Connexion réussie.';
+      } else {
+        restart(field, 'is-error');   // Question 5 : voir l'énoncé
+        msg.textContent = 'Mot de passe incorrect.';
+      }
+    });
+  </script>
+</body>
+</html>
